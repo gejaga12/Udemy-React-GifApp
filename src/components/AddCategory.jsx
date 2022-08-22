@@ -1,6 +1,7 @@
 import { useState } from "react";
 
-export const AddCategory = () => {
+export const AddCategory = ({ onNewCategory }) => {
+    
   const [inputValue, setInputValue] = useState("");
 
   const onInputChange = ({ target }) => {
@@ -8,16 +9,15 @@ export const AddCategory = () => {
   };
 
   const onSubmit = (event) => {
-    event.preventDefault();
-    console.log(inputValue);
+    event.preventDefault(); //freno el renderizado propio del formulario
+    if (inputValue.trim().length <= 1) return; //freno el renderizado sin nada escrito
+
+    onNewCategory(inputValue.trim()); //agrego elementos a la lista mediante el input
+    setInputValue("");
   };
 
   return (
-    <form
-      onSubmit={(event) => {
-        onSubmit(event);
-      }}
-    >
+    <form onSubmit={onSubmit}>
       <input
         type="text"
         placeholder="Buscar Gifs"
