@@ -3,7 +3,7 @@ import { AddCategory } from "./components/AddCategory";
 import { GifGrid } from "./components/GifGrid";
 
 const GifExpertApp = () => {
-  const [categories, setCategories] = useState(["Boca Juniors"]);
+  const [categories, setCategories] = useState(["Argentina"]);
 
   const onAddCategory = (newCategory) => {
     if (categories.includes(newCategory)) return;
@@ -13,9 +13,7 @@ const GifExpertApp = () => {
   return (
     <>
       <h1>PROYECTO GIF</h1>
-
-      <AddCategory onNewCategory={(event) => onAddCategory(event)} />
-
+      <AddCategory onNewCategory={onAddCategory} />
       {categories.map((category) => (
         <GifGrid key={category} category={category} />
       ))}
